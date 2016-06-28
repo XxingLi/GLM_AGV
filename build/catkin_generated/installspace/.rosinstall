@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/glm/catkin_ws/install/setup.sh

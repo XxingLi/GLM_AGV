@@ -1,0 +1,8 @@
+prefix=/home/glm/catkin_ws/devel
+
+Name: serial_pkg
+Description: Description of serial_pkg
+Version: 0.0.0
+Cflags: -I/home/glm/catkin_ws/src/serial_pkg/include
+Libs: -L/home/glm/catkin_ws/devel/lib -lserial_pkg
+Requires: roscpp rospy std_msgs
