@@ -1,0 +1,8 @@
+prefix=/home/glm/catkin_ws/install
+
+Name: but_velodyne_proc
+Description: Description of but_velodyne_proc
+Version: 0.0.5
+Cflags: 
+Libs: -L/home/glm/catkin_ws/install/lib 
+Requires: opencv nav_msgs sensor_msgs costmap_2d

@@ -1,0 +1,17 @@
+<launch>
+
+  <!--- Run VLP pointcloud -->
+  <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" />
+
+  <!--- Run pointcloud to scan -->
+  <include file="$(find but_velodyne_proc)/launch/laserscan_node.launch" />
+                                                                                                                                                                
+  <include file="$(find glm_2d_nav)/launch/agv_configuration.launch" />
+
+  <!--- Run gmapping -->
+  <include file="$(find glm_2d_nav)/launch/gmapping.launch" />
+
+  <!--- Run Move Base -->
+  <include file="$(find glm_2d_nav)/launch/move_base.launch" />
+
+</launch>

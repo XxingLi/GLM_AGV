@@ -249,7 +249,7 @@ int main(int argc, char **argv)
 	ros::init(argc, argv, "talker");
 
 	ros::NodeHandle n;
-	ros::NodeHndle n2;
+	ros::NodeHandle n2;
 
 	ros::Subscriber cmd_vel_Sub = n.subscribe("cmd_vel",1,write_cb);    //订阅	 cmd_vel topic
 	

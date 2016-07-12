@@ -164,90 +164,6 @@ _serial_pkg_generate_messages_check_deps_Serial_rw/fast:
 .PHONY : _serial_pkg_generate_messages_check_deps_Serial_rw/fast
 
 # Convenience name for target.
-serial_pkg/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
-	cd /home/glm/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 serial_pkg/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-.PHONY : serial_pkg/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_cpp: serial_pkg/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-.PHONY : roscpp_generate_messages_cpp
-
-# fast build rule for target.
-roscpp_generate_messages_cpp/fast:
-	cd /home/glm/catkin_ws/build && $(MAKE) -f serial_pkg/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make serial_pkg/CMakeFiles/roscpp_generate_messages_cpp.dir/build
-.PHONY : roscpp_generate_messages_cpp/fast
-
-# Convenience name for target.
-serial_pkg/CMakeFiles/roscpp_generate_messages_lisp.dir/rule:
-	cd /home/glm/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 serial_pkg/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-.PHONY : serial_pkg/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_lisp: serial_pkg/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-.PHONY : roscpp_generate_messages_lisp
-
-# fast build rule for target.
-roscpp_generate_messages_lisp/fast:
-	cd /home/glm/catkin_ws/build && $(MAKE) -f serial_pkg/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make serial_pkg/CMakeFiles/roscpp_generate_messages_lisp.dir/build
-.PHONY : roscpp_generate_messages_lisp/fast
-
-# Convenience name for target.
-serial_pkg/CMakeFiles/roscpp_generate_messages_py.dir/rule:
-	cd /home/glm/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 serial_pkg/CMakeFiles/roscpp_generate_messages_py.dir/rule
-.PHONY : serial_pkg/CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_py: serial_pkg/CMakeFiles/roscpp_generate_messages_py.dir/rule
-.PHONY : roscpp_generate_messages_py
-
-# fast build rule for target.
-roscpp_generate_messages_py/fast:
-	cd /home/glm/catkin_ws/build && $(MAKE) -f serial_pkg/CMakeFiles/roscpp_generate_messages_py.dir/build.make serial_pkg/CMakeFiles/roscpp_generate_messages_py.dir/build
-.PHONY : roscpp_generate_messages_py/fast
-
-# Convenience name for target.
-serial_pkg/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
-	cd /home/glm/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 serial_pkg/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-.PHONY : serial_pkg/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_cpp: serial_pkg/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-.PHONY : rosgraph_msgs_generate_messages_cpp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_cpp/fast:
-	cd /home/glm/catkin_ws/build && $(MAKE) -f serial_pkg/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make serial_pkg/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-serial_pkg/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
-	cd /home/glm/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 serial_pkg/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-.PHONY : serial_pkg/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_lisp: serial_pkg/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-.PHONY : rosgraph_msgs_generate_messages_lisp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_lisp/fast:
-	cd /home/glm/catkin_ws/build && $(MAKE) -f serial_pkg/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make serial_pkg/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-serial_pkg/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule:
-	cd /home/glm/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 serial_pkg/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-.PHONY : serial_pkg/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_py: serial_pkg/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-.PHONY : rosgraph_msgs_generate_messages_py
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_py/fast:
-	cd /home/glm/catkin_ws/build && $(MAKE) -f serial_pkg/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make serial_pkg/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
-.PHONY : rosgraph_msgs_generate_messages_py/fast
-
-# Convenience name for target.
 serial_pkg/CMakeFiles/serial_listener.dir/rule:
 	cd /home/glm/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 serial_pkg/CMakeFiles/serial_listener.dir/rule
 .PHONY : serial_pkg/CMakeFiles/serial_listener.dir/rule
@@ -350,12 +266,6 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... roscpp_generate_messages_cpp"
-	@echo "... roscpp_generate_messages_lisp"
-	@echo "... roscpp_generate_messages_py"
-	@echo "... rosgraph_msgs_generate_messages_cpp"
-	@echo "... rosgraph_msgs_generate_messages_lisp"
-	@echo "... rosgraph_msgs_generate_messages_py"
 	@echo "... serial_listener"
 	@echo "... serial_pkg_generate_messages"
 	@echo "... serial_talker"

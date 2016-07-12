@@ -1,0 +1,12 @@
+<launch>
+
+  <!--- Run configuration -->                                                                                                                                                                 
+  <include file="$(find glm_2d_nav)/launch/agv_configuration.launch" />
+
+  <!-- Run AMCL -->
+  <include file="$(find glm_2d_nav)/launch/amcl.launch" />
+
+  <!--- Run Move Base -->
+  <include file="$(find glm_2d_nav)/launch/move_base.launch" />
+
+</launch>

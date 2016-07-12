@@ -1,0 +1,15 @@
+<launch>
+
+  <!--- Run configuration -->                                                                                                                                                                 
+  <include file="$(find glm_2d_nav)/launch/agv_configuration.launch" />
+
+  <!--- Run gmapping -->
+  <include file="$(find glm_2d_nav)/launch/gmapping.launch" />
+
+  <!--- Run Move Base -->
+  <include file="$(find glm_2d_nav)/launch/move_base.launch" />
+
+  <!-- Run Frontier Exploration -->
+  <include file="$(find glm_2d_nav)/launch/exploration.launch"/>
+
+</launch>

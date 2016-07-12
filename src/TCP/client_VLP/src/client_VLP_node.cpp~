@@ -1,0 +1,175 @@
+#include "iostream"
+#include "vector"
+#include "string"
+#include "ros/ros.h"
+#include <sensor_msgs/PointCloud2.h>
+#include "netinet/in.h"
+#include <stdlib.h> 
+#include <stdio.h> 
+#include <string.h> 
+#include <errno.h>  
+#include <netdb.h> 
+#include <sstream>
+#include <sys/types.h> 
+#include <sys/socket.h> 
+#include <arpa/inet.h> //inet_ntoa()函数的头文件
+#include "sensor_msgs/point_cloud2_iterator.h"
+
+using namespace std;
+
+#define portnumber 3333
+int sockfd; 
+union sendbuf{
+	float flpoint;
+	char chpoint[4];
+};
+
+char cloudbuffer[12];
+
+char testbuffer[]="testdataint ";
+
+void Callback(const sensor_msgs::PointCloud2ConstPtr& cloudmsg)
+{
+	ROS_INFO("test error");
+	sensor_msgs::PointCloud2 cloud_msg = * cloudmsg;
+	sendbuf pointx,pointy,pointz;
+
+	sensor_msgs::PointCloud2Iterator<float> iter_x(cloud_msg,"x");
+	sensor_msgs::PointCloud2Iterator<float> iter_y(cloud_msg,"y");
+	sensor_msgs::PointCloud2Iterator<float> iter_z(cloud_msg,"z");
+
+
+		int sum = 0;
+	for(int i=0;i<cloudmsg->width;i++,++iter_x,++iter_y,++iter_z)
+	{
+		pointx.flpoint = *iter_x;
+		pointy.flpoint = *iter_y;
+		pointz.flpoint = *iter_z;
+		for (int j = 0; j < 4; j ++)
+		{
+			cloudbuffer[j + 0] = pointx.chpoint[j];
+			cloudbuffer[j + 4] = pointy.chpoint[j];
+			cloudbuffer[j + 8] = pointz.chpoint[j];
+		}
+		if((write(sockfd,cloudbuffer,12) >= 0))
+		{
+			sum ++;
+			ROS_INFO("test sum \t\t\t%d",sum);
+			ROS_INFO("test sending");
+
+		}
+		else
+		{
+			sum = 0;
+			ROS_INFO("test sending error sum is \t\t\t%d",sum);	
+		}
+#if 0
+		float x = *iter_x;
+		float y = *iter_y;
+		float z = *iter_z;
+
+
+		uint8_t *px =(uint8_t *) &x;
+		uint8_t *py =(uint8_t *) &y;
+		uint8_t *pz =(uint8_t*) &z;
+
+		for(int j = 0;j < 4;j ++)
+		{
+
+			ROS_INFO("iter_x %d",*px);
+			ROS_INFO("iter_y %d",*py);
+			ROS_INFO("iter_z %d",*pz);
+			px ++;
+			py ++;
+			pz ++;
+
+		}
+		ROS_INFO("iter_x %f",*iter_x);
+		ROS_INFO("iter_y %f",*iter_y);
+		ROS_INFO("iter_z %f",*iter_z);
+#endif
+	}	
+	//memset(cloudbuffer, 0, LENGTH * 2);
+
+	//std::ostringstream oss;
+	//for (int i = 0; i < LENGTH; i++)
+	//{
+	//	oss << (*cloudmsg).data[i] << ",";
+	//}
+
+	//std::string const& str= oss.str();
+
+	//memcpy(cloudbuffer, str.c_str(), str.size());
+
+	//cout << "str " << str << endl;
+	//cout << "cloudbuffer " << cloudbuffer << endl;
+
+	// ROS_INFO("width=%d,height=%d",cloudmsg->width,cloudmsg->height);
+}
+
+int main(int argc, char **argv)
+{
+	//int sockfd; 
+	char buffer[1024];  
+
+	struct sockaddr_in server_addr; //描述服务器的地址
+	//struct hostent *host; 
+	int nbytes; 
+
+	//[> 客户程序开始建立 sockfd描述符 <] 
+	if((sockfd=socket(AF_INET,SOCK_STREAM,0))==-1) // AF_INET:Internet;SOCK_STREAM:TCP
+	{ 
+		fprintf(stderr,"Socket Error:%s\a\n",strerror(errno)); 
+		exit(1); 
+	} 
+
+	//[> 客户程序填充服务端的资料 <] 
+	bzero(&server_addr,sizeof(server_addr)); // 初始化,置0
+	server_addr.sin_family=AF_INET; // IPV4
+	server_addr.sin_port=htons(portnumber); // (将本机器上的short数据转化为网络上的short数据)端口号
+	//server_addr.sin_addr=*((struct in_addr *)host->h_addr); // IP地址
+	server_addr.sin_addr.s_addr=inet_addr("192.168.0.100"); // IP地址
+
+	//[> 客户程序发起连接请求 <] 
+	if(connect(sockfd,(struct sockaddr *)(&server_addr),sizeof(struct sockaddr))==-1) 
+	{ 
+		fprintf(stderr,"Connect Error:%s\a\n",strerror(errno)); 
+		exit(1); 
+	} 
+
+	//[> 连接成功了 <] 
+	if((nbytes=read(sockfd,buffer,1024))==-1) 
+	{ 
+		fprintf(stderr,"Read Error:%s\n",strerror(errno)); 
+		exit(1); 
+	} 
+	buffer[nbytes]='\0'; 
+	printf("I have received:%s\n",buffer); 
+
+	ros::init(argc, argv, "VLPdata");
+	ros::NodeHandle nh;
+
+	ros::Subscriber sub = nh.subscribe<sensor_msgs::PointCloud2> ("velodyne_points", 5, Callback);
+
+	ros::Rate loop_rate(5);
+	while(ros::ok())
+	{
+		ROS_INFO("test send start");
+
+		//write(sockfd,cloudbuffer,30000);
+
+		for(int i =0; i< 30000; i ++)
+		{
+			//	ROS_INFO("testbuffer:\t%d",cloudbuffer[i]);
+		}
+		ROS_INFO("test send end");
+
+		ros::spinOnce();
+		loop_rate.sleep();
+	}
+
+
+	/* 结束通讯 */ 
+	//    close(sockfd); 
+	//    exit(0);
+}

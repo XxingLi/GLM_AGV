@@ -1,0 +1,8 @@
+prefix=/home/glm/catkin_ws/devel
+
+Name: glm_2d_nav
+Description: Description of glm_2d_nav
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/glm/catkin_ws/devel/lib 
+Requires: 
