@@ -23,6 +23,8 @@ void buf_deal(char *data ,int len);
 
 int main(int argc, const char *argv[])
 {
+	char buf_cli[CLIBUFSIZE];
+	int ret = 0;
 
 	//检测输入参数个数是否正确
 	if(argc != 3)
@@ -33,26 +35,21 @@ int main(int argc, const char *argv[])
 
 	//连接到服务器start
 	int port;
-	char *ip = (char*)argv[1];
 	int cli_fd;
+	char *ip = (char*)argv[1];
+
 	sscanf(argv[2],"%d",&port);
 	tcp_cli(ip,port,&cli_fd);
 	//连接到服务器end
 
 
-
-	char buf_cli[CLIBUFSIZE];
-	int ret = 0;
-
-	printf("!!!!!!!!!!!!!!!!!!\n");
 	while(1)
 	{
 
 		memset(buf_cli,0,sizeof(buf_cli));	
-
 		if( (ret = recv(cli_fd,buf_cli,sizeof(buf_cli),0)) <= 0)     	//==0:对方正常关闭导致连接断开
 		{
-			printf("recv error\n"); 								//<0:copy数据错误
+			printf("recv error\n"); 									//<0:copy数据错误
 		}
 		else
 		{
@@ -64,16 +61,12 @@ int main(int argc, const char *argv[])
 
 	}
 
-
-//execl("/opt/ros/indigo/bin/rostopic","rostopic","echo","/move_base_simple/goal",(char *)0);
-
-
 return 0;
 
 }
 
 
-
+ 
 void buf_deal(char *data ,int len)
 {
 
@@ -82,7 +75,7 @@ void buf_deal(char *data ,int len)
 	float ff = 1.234;
 	char buf[128]; 
 
-	sprintf(buf,TOPICARGUS,ff,ff,ff);
+	sprintf(buf,TOPICARGUS,ff,ff);
 	printf("%s\n",buf);
 
 	pid = fork();

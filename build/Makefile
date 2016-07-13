@@ -410,17 +410,17 @@ velodyne_msgs_genpy/fast:
 .PHONY : velodyne_msgs_genpy/fast
 
 #=============================================================================
-# Target rules for targets named client_VLP_node
+# Target rules for targets named cli_cmd_node
 
 # Build rule for target.
-client_VLP_node: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 client_VLP_node
-.PHONY : client_VLP_node
+cli_cmd_node: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 cli_cmd_node
+.PHONY : cli_cmd_node
 
 # fast build rule for target.
-client_VLP_node/fast:
-	$(MAKE) -f TCP/client_VLP/CMakeFiles/client_VLP_node.dir/build.make TCP/client_VLP/CMakeFiles/client_VLP_node.dir/build
-.PHONY : client_VLP_node/fast
+cli_cmd_node/fast:
+	$(MAKE) -f cli_cmd/CMakeFiles/cli_cmd_node.dir/build.make cli_cmd/CMakeFiles/cli_cmd_node.dir/build
+.PHONY : cli_cmd_node/fast
 
 #=============================================================================
 # Target rules for targets named roscpp_generate_messages_cpp
@@ -432,7 +432,7 @@ roscpp_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_cpp/fast:
-	$(MAKE) -f TCP/client_VLP/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make TCP/client_VLP/CMakeFiles/roscpp_generate_messages_cpp.dir/build
+	$(MAKE) -f cli_cmd/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make cli_cmd/CMakeFiles/roscpp_generate_messages_cpp.dir/build
 .PHONY : roscpp_generate_messages_cpp/fast
 
 #=============================================================================
@@ -445,7 +445,7 @@ roscpp_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_lisp/fast:
-	$(MAKE) -f TCP/client_VLP/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make TCP/client_VLP/CMakeFiles/roscpp_generate_messages_lisp.dir/build
+	$(MAKE) -f cli_cmd/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make cli_cmd/CMakeFiles/roscpp_generate_messages_lisp.dir/build
 .PHONY : roscpp_generate_messages_lisp/fast
 
 #=============================================================================
@@ -458,7 +458,7 @@ roscpp_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_py/fast:
-	$(MAKE) -f TCP/client_VLP/CMakeFiles/roscpp_generate_messages_py.dir/build.make TCP/client_VLP/CMakeFiles/roscpp_generate_messages_py.dir/build
+	$(MAKE) -f cli_cmd/CMakeFiles/roscpp_generate_messages_py.dir/build.make cli_cmd/CMakeFiles/roscpp_generate_messages_py.dir/build
 .PHONY : roscpp_generate_messages_py/fast
 
 #=============================================================================
@@ -471,7 +471,7 @@ rosgraph_msgs_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f TCP/client_VLP/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make TCP/client_VLP/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+	$(MAKE) -f cli_cmd/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make cli_cmd/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
 .PHONY : rosgraph_msgs_generate_messages_cpp/fast
 
 #=============================================================================
@@ -484,7 +484,7 @@ rosgraph_msgs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f TCP/client_VLP/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make TCP/client_VLP/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+	$(MAKE) -f cli_cmd/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make cli_cmd/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
 .PHONY : rosgraph_msgs_generate_messages_lisp/fast
 
 #=============================================================================
@@ -497,8 +497,21 @@ rosgraph_msgs_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_py/fast:
-	$(MAKE) -f TCP/client_VLP/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make TCP/client_VLP/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
+	$(MAKE) -f cli_cmd/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make cli_cmd/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
 .PHONY : rosgraph_msgs_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named client_VLP_node
+
+# Build rule for target.
+client_VLP_node: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 client_VLP_node
+.PHONY : client_VLP_node
+
+# fast build rule for target.
+client_VLP_node/fast:
+	$(MAKE) -f TCP/client_VLP/CMakeFiles/client_VLP_node.dir/build.make TCP/client_VLP/CMakeFiles/client_VLP_node.dir/build
+.PHONY : client_VLP_node/fast
 
 #=============================================================================
 # Target rules for targets named _serial_pkg_generate_messages_check_deps_Serial_rw
@@ -2314,13 +2327,14 @@ help:
 	@echo "... velodyne_msgs_generate_messages_py"
 	@echo "... velodyne_msgs_genlisp"
 	@echo "... velodyne_msgs_genpy"
-	@echo "... client_VLP_node"
+	@echo "... cli_cmd_node"
 	@echo "... roscpp_generate_messages_cpp"
 	@echo "... roscpp_generate_messages_lisp"
 	@echo "... roscpp_generate_messages_py"
 	@echo "... rosgraph_msgs_generate_messages_cpp"
 	@echo "... rosgraph_msgs_generate_messages_lisp"
 	@echo "... rosgraph_msgs_generate_messages_py"
+	@echo "... client_VLP_node"
 	@echo "... _serial_pkg_generate_messages_check_deps_Serial_rw"
 	@echo "... serial_listener"
 	@echo "... serial_pkg_generate_messages"

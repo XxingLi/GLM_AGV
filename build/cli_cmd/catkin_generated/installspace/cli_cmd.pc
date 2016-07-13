@@ -1,0 +1,8 @@
+prefix=/home/glm/catkin_ws/install
+
+Name: cli_cmd
+Description: Description of cli_cmd
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/glm/catkin_ws/install/lib 
+Requires: 

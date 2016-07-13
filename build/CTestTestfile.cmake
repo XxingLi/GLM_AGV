@@ -7,6 +7,7 @@
 SUBDIRS(gtest)
 SUBDIRS(velodyne/velodyne)
 SUBDIRS(velodyne/velodyne_msgs)
+SUBDIRS(cli_cmd)
 SUBDIRS(TCP/client_VLP)
 SUBDIRS(serial_pkg)
 SUBDIRS(odom_publisher)
