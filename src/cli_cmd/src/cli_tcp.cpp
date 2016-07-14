@@ -1,6 +1,6 @@
 #include "tcp_socket.h"
 
-void tcp_cli (char * ip,int port,int *cli_fd)
+int tcp_cli (char * ip,int port,int *cli_fd)
 {
 
 	int socket_cli;
@@ -20,11 +20,13 @@ void tcp_cli (char * ip,int port,int *cli_fd)
 	if(connect(socket_cli,(struct sockaddr *)&ser_addr,sizeof(ser_addr)) == -1)
 	{
 		perror("connect");
-		exit(1);
+		close(socket_cli);
+		return 1;
 	}
 
 
 	*cli_fd = socket_cli;
+	return 0;
 }
 
 #if 0

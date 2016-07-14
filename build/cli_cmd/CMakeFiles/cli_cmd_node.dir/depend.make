@@ -8,6 +8,14 @@ cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /home/glm/catkin_ws/src/cli_
 cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /home/glm/catkin_ws/src/cli_cmd/src/tcp_socket.h
 cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /opt/ros/indigo/include/XmlRpcDecl.h
 cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /opt/ros/indigo/include/XmlRpcValue.h
+cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /opt/ros/indigo/include/geometry_msgs/Point.h
+cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /opt/ros/indigo/include/geometry_msgs/Pose.h
+cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /opt/ros/indigo/include/geometry_msgs/PoseWithCovariance.h
+cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /opt/ros/indigo/include/geometry_msgs/Quaternion.h
+cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /opt/ros/indigo/include/geometry_msgs/Twist.h
+cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /opt/ros/indigo/include/geometry_msgs/TwistWithCovariance.h
+cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /opt/ros/indigo/include/geometry_msgs/Vector3.h
+cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /opt/ros/indigo/include/nav_msgs/Odometry.h
 cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /opt/ros/indigo/include/ros/advertise_options.h
 cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /opt/ros/indigo/include/ros/advertise_service_options.h
 cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /opt/ros/indigo/include/ros/assert.h
@@ -26,6 +34,7 @@ cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /opt/ros/indigo/include/ros/
 cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /opt/ros/indigo/include/ros/message.h
 cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /opt/ros/indigo/include/ros/message_event.h
 cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /opt/ros/indigo/include/ros/message_forward.h
+cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /opt/ros/indigo/include/ros/message_operations.h
 cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /opt/ros/indigo/include/ros/message_traits.h
 cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /opt/ros/indigo/include/ros/names.h
 cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /opt/ros/indigo/include/ros/node_handle.h
@@ -61,4 +70,5 @@ cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /opt/ros/indigo/include/ros/
 cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /opt/ros/indigo/include/ros/wall_timer.h
 cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /opt/ros/indigo/include/ros/wall_timer_options.h
 cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /opt/ros/indigo/include/rosconsole/macros_generated.h
+cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /opt/ros/indigo/include/std_msgs/Header.h
 
