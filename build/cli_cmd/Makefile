@@ -150,18 +150,18 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-cli_cmd/CMakeFiles/cli_cmd_node.dir/rule:
-	cd /home/glm/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 cli_cmd/CMakeFiles/cli_cmd_node.dir/rule
-.PHONY : cli_cmd/CMakeFiles/cli_cmd_node.dir/rule
+cli_cmd/CMakeFiles/recv_cli.dir/rule:
+	cd /home/glm/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 cli_cmd/CMakeFiles/recv_cli.dir/rule
+.PHONY : cli_cmd/CMakeFiles/recv_cli.dir/rule
 
 # Convenience name for target.
-cli_cmd_node: cli_cmd/CMakeFiles/cli_cmd_node.dir/rule
-.PHONY : cli_cmd_node
+recv_cli: cli_cmd/CMakeFiles/recv_cli.dir/rule
+.PHONY : recv_cli
 
 # fast build rule for target.
-cli_cmd_node/fast:
-	cd /home/glm/catkin_ws/build && $(MAKE) -f cli_cmd/CMakeFiles/cli_cmd_node.dir/build.make cli_cmd/CMakeFiles/cli_cmd_node.dir/build
-.PHONY : cli_cmd_node/fast
+recv_cli/fast:
+	cd /home/glm/catkin_ws/build && $(MAKE) -f cli_cmd/CMakeFiles/recv_cli.dir/build.make cli_cmd/CMakeFiles/recv_cli.dir/build
+.PHONY : recv_cli/fast
 
 # Convenience name for target.
 cli_cmd/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
@@ -247,12 +247,26 @@ rosgraph_msgs_generate_messages_py/fast:
 	cd /home/glm/catkin_ws/build && $(MAKE) -f cli_cmd/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make cli_cmd/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
 .PHONY : rosgraph_msgs_generate_messages_py/fast
 
+# Convenience name for target.
+cli_cmd/CMakeFiles/send_cli.dir/rule:
+	cd /home/glm/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 cli_cmd/CMakeFiles/send_cli.dir/rule
+.PHONY : cli_cmd/CMakeFiles/send_cli.dir/rule
+
+# Convenience name for target.
+send_cli: cli_cmd/CMakeFiles/send_cli.dir/rule
+.PHONY : send_cli
+
+# fast build rule for target.
+send_cli/fast:
+	cd /home/glm/catkin_ws/build && $(MAKE) -f cli_cmd/CMakeFiles/send_cli.dir/build.make cli_cmd/CMakeFiles/send_cli.dir/build
+.PHONY : send_cli/fast
+
 src/cli_tcp.o: src/cli_tcp.cpp.o
 .PHONY : src/cli_tcp.o
 
 # target to build an object file
 src/cli_tcp.cpp.o:
-	cd /home/glm/catkin_ws/build && $(MAKE) -f cli_cmd/CMakeFiles/cli_cmd_node.dir/build.make cli_cmd/CMakeFiles/cli_cmd_node.dir/src/cli_tcp.cpp.o
+	cd /home/glm/catkin_ws/build && $(MAKE) -f cli_cmd/CMakeFiles/recv_cli.dir/build.make cli_cmd/CMakeFiles/recv_cli.dir/src/cli_tcp.cpp.o
 .PHONY : src/cli_tcp.cpp.o
 
 src/cli_tcp.i: src/cli_tcp.cpp.i
@@ -260,7 +274,7 @@ src/cli_tcp.i: src/cli_tcp.cpp.i
 
 # target to preprocess a source file
 src/cli_tcp.cpp.i:
-	cd /home/glm/catkin_ws/build && $(MAKE) -f cli_cmd/CMakeFiles/cli_cmd_node.dir/build.make cli_cmd/CMakeFiles/cli_cmd_node.dir/src/cli_tcp.cpp.i
+	cd /home/glm/catkin_ws/build && $(MAKE) -f cli_cmd/CMakeFiles/recv_cli.dir/build.make cli_cmd/CMakeFiles/recv_cli.dir/src/cli_tcp.cpp.i
 .PHONY : src/cli_tcp.cpp.i
 
 src/cli_tcp.s: src/cli_tcp.cpp.s
@@ -268,7 +282,7 @@ src/cli_tcp.s: src/cli_tcp.cpp.s
 
 # target to generate assembly for a file
 src/cli_tcp.cpp.s:
-	cd /home/glm/catkin_ws/build && $(MAKE) -f cli_cmd/CMakeFiles/cli_cmd_node.dir/build.make cli_cmd/CMakeFiles/cli_cmd_node.dir/src/cli_tcp.cpp.s
+	cd /home/glm/catkin_ws/build && $(MAKE) -f cli_cmd/CMakeFiles/recv_cli.dir/build.make cli_cmd/CMakeFiles/recv_cli.dir/src/cli_tcp.cpp.s
 .PHONY : src/cli_tcp.cpp.s
 
 src/main.o: src/main.cpp.o
@@ -276,7 +290,7 @@ src/main.o: src/main.cpp.o
 
 # target to build an object file
 src/main.cpp.o:
-	cd /home/glm/catkin_ws/build && $(MAKE) -f cli_cmd/CMakeFiles/cli_cmd_node.dir/build.make cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o
+	cd /home/glm/catkin_ws/build && $(MAKE) -f cli_cmd/CMakeFiles/recv_cli.dir/build.make cli_cmd/CMakeFiles/recv_cli.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -284,7 +298,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	cd /home/glm/catkin_ws/build && $(MAKE) -f cli_cmd/CMakeFiles/cli_cmd_node.dir/build.make cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.i
+	cd /home/glm/catkin_ws/build && $(MAKE) -f cli_cmd/CMakeFiles/recv_cli.dir/build.make cli_cmd/CMakeFiles/recv_cli.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -292,8 +306,32 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	cd /home/glm/catkin_ws/build && $(MAKE) -f cli_cmd/CMakeFiles/cli_cmd_node.dir/build.make cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.s
+	cd /home/glm/catkin_ws/build && $(MAKE) -f cli_cmd/CMakeFiles/recv_cli.dir/build.make cli_cmd/CMakeFiles/recv_cli.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
+
+src/send_node.o: src/send_node.cpp.o
+.PHONY : src/send_node.o
+
+# target to build an object file
+src/send_node.cpp.o:
+	cd /home/glm/catkin_ws/build && $(MAKE) -f cli_cmd/CMakeFiles/send_cli.dir/build.make cli_cmd/CMakeFiles/send_cli.dir/src/send_node.cpp.o
+.PHONY : src/send_node.cpp.o
+
+src/send_node.i: src/send_node.cpp.i
+.PHONY : src/send_node.i
+
+# target to preprocess a source file
+src/send_node.cpp.i:
+	cd /home/glm/catkin_ws/build && $(MAKE) -f cli_cmd/CMakeFiles/send_cli.dir/build.make cli_cmd/CMakeFiles/send_cli.dir/src/send_node.cpp.i
+.PHONY : src/send_node.cpp.i
+
+src/send_node.s: src/send_node.cpp.s
+.PHONY : src/send_node.s
+
+# target to generate assembly for a file
+src/send_node.cpp.s:
+	cd /home/glm/catkin_ws/build && $(MAKE) -f cli_cmd/CMakeFiles/send_cli.dir/build.make cli_cmd/CMakeFiles/send_cli.dir/src/send_node.cpp.s
+.PHONY : src/send_node.cpp.s
 
 # Help Target
 help:
@@ -301,19 +339,20 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... cli_cmd_node"
 	@echo "... edit_cache"
 	@echo "... install"
 	@echo "... install/local"
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... recv_cli"
 	@echo "... roscpp_generate_messages_cpp"
 	@echo "... roscpp_generate_messages_lisp"
 	@echo "... roscpp_generate_messages_py"
 	@echo "... rosgraph_msgs_generate_messages_cpp"
 	@echo "... rosgraph_msgs_generate_messages_lisp"
 	@echo "... rosgraph_msgs_generate_messages_py"
+	@echo "... send_cli"
 	@echo "... test"
 	@echo "... src/cli_tcp.o"
 	@echo "... src/cli_tcp.i"
@@ -321,6 +360,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/send_node.o"
+	@echo "... src/send_node.i"
+	@echo "... src/send_node.s"
 .PHONY : help
 
 

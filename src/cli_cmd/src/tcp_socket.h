@@ -10,13 +10,12 @@
 #include<sys/socket.h>
 #include<unistd.h>
 #include<string.h>
+#include <signal.h>
 
 
 
 int tcp_cli(char* ,int , int *);
 void buf_deal(char * ,int);
-
-
 
 
 

@@ -187,5 +187,8 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-add_executable(cli_cmd_node src/main.cpp src/cli_tcp.cpp)
-target_link_libraries(cli_cmd_node ${catkin_LIBRARIES})
+add_executable(recv_cli src/main.cpp src/cli_tcp.cpp)
+target_link_libraries(recv_cli ${catkin_LIBRARIES})
+
+add_executable(send_cli src/send_node.cpp)
+target_link_libraries(send_cli ${catkin_LIBRARIES})

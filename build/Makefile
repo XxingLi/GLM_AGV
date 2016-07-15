@@ -410,17 +410,17 @@ velodyne_msgs_genpy/fast:
 .PHONY : velodyne_msgs_genpy/fast
 
 #=============================================================================
-# Target rules for targets named cli_cmd_node
+# Target rules for targets named recv_cli
 
 # Build rule for target.
-cli_cmd_node: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 cli_cmd_node
-.PHONY : cli_cmd_node
+recv_cli: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 recv_cli
+.PHONY : recv_cli
 
 # fast build rule for target.
-cli_cmd_node/fast:
-	$(MAKE) -f cli_cmd/CMakeFiles/cli_cmd_node.dir/build.make cli_cmd/CMakeFiles/cli_cmd_node.dir/build
-.PHONY : cli_cmd_node/fast
+recv_cli/fast:
+	$(MAKE) -f cli_cmd/CMakeFiles/recv_cli.dir/build.make cli_cmd/CMakeFiles/recv_cli.dir/build
+.PHONY : recv_cli/fast
 
 #=============================================================================
 # Target rules for targets named roscpp_generate_messages_cpp
@@ -499,6 +499,19 @@ rosgraph_msgs_generate_messages_py: cmake_check_build_system
 rosgraph_msgs_generate_messages_py/fast:
 	$(MAKE) -f cli_cmd/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make cli_cmd/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
 .PHONY : rosgraph_msgs_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named send_cli
+
+# Build rule for target.
+send_cli: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 send_cli
+.PHONY : send_cli
+
+# fast build rule for target.
+send_cli/fast:
+	$(MAKE) -f cli_cmd/CMakeFiles/send_cli.dir/build.make cli_cmd/CMakeFiles/send_cli.dir/build
+.PHONY : send_cli/fast
 
 #=============================================================================
 # Target rules for targets named client_VLP_node
@@ -2327,13 +2340,14 @@ help:
 	@echo "... velodyne_msgs_generate_messages_py"
 	@echo "... velodyne_msgs_genlisp"
 	@echo "... velodyne_msgs_genpy"
-	@echo "... cli_cmd_node"
+	@echo "... recv_cli"
 	@echo "... roscpp_generate_messages_cpp"
 	@echo "... roscpp_generate_messages_lisp"
 	@echo "... roscpp_generate_messages_py"
 	@echo "... rosgraph_msgs_generate_messages_cpp"
 	@echo "... rosgraph_msgs_generate_messages_lisp"
 	@echo "... rosgraph_msgs_generate_messages_py"
+	@echo "... send_cli"
 	@echo "... client_VLP_node"
 	@echo "... _serial_pkg_generate_messages_check_deps_Serial_rw"
 	@echo "... serial_listener"

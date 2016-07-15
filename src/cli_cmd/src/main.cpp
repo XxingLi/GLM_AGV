@@ -1,27 +1,34 @@
-#include <signal.h>
-#include <unistd.h>
 
 #include "tcp_socket.h"
 
 #include "ros/ros.h"
+#include "std_msgs/Int16.h"
+#include "std_msgs/Int32.h"
 #include "nav_msgs/Odometry.h"
 
+
+
 #define CLIBUFSIZE 32
-#define SENDBUFSIZE 20
-#define DATAPOSESTR 2
-#define DATAPOSEEND 18
+#define CLIBUFTAIL 0x66
+#define EXPLENTH 13
+#define TELLENTH 4
 #define PXPOSESTR 2
 #define PYPOSEEND 9
-#define SCEXPHEAD 0x61
-#define SCTELHEAD 0x62
-#define START 0x0f
-#define END 0x0e
+#define SCEXPHEAD 0x41
+#define SCEXPSTR 0x4e
+#define SCEXPEND 0x4f
+#define SCTELHEAD 0x31
+#define SCTELSTR 0x3e
+#define SCTELEND 0X3f
+#define START 0x6e
+#define END 0x6f
 #define DOING 0x0f
 #define DO 0x0e
 
 
 
 #define ROSLAUNCHPATH "/opt/ros/indigo/bin/roslaunch"
+#define LAUNCH "roslaunch"
 #define LAUNCHPKG "glm_2d_nav"
 #define LAUNCHMODE1 "glm_mode1.launch"
 #define LAUNCHMODE2 "glm_mode2.launch"
@@ -32,15 +39,36 @@
 #define TOPICMDP "pub"
 #define TOPICTOP "/move_base_simple/goal"
 #define TOPICTYPE "geometry_msgs/PoseStamped"
-#define TOPICARGUS	"{ header: { frame_id: \"map\" }, pose: { position: { x: %.6f, y: %.6f, z: 0 }, orientation: { x: 0, y: 0, z: 0, w: 0 } } }"
+#define TOPICARGUS	"{ header: { frame_id: \"map\" }, pose: { position: { x: %.4f, y: %.4f, z: 0 }, orientation: { x: 0, y: 0, z: 0, w: 0 } } }"
 
 
+pid_t cpid ;
+typedef void(*sighandler_t)(int);
+void recvcmd_deal(int mode,char *cmd);
+
+
+
+
+
+
+void sighand_fun(int signum)
+{
+	int killpid;
+	int status;
+
+	printf("sighandlerhe呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵 \n");
+	kill(cpid,SIGINT);
+	killpid = waitpid(cpid,&status,0);
+	if(killpid == cpid)
+	{
+		printf("cpid %d is killed\n",cpid);
+		exit(1);
+	}
+}
 
 int cli_fd;
-char sendbuf[SENDBUFSIZE] = {0};
 
 void buf_deal(char * ,int);
-void send_cli_cb(const nav_msgs::Odometry::ConstPtr &msg);
 
 union float_char
 {
@@ -65,42 +93,40 @@ int main(int argc, char **argv)
 	int port;
 	char *ip = (char*)argv[1];
 	sscanf(argv[2],"%d",&port);
-#if 1 
+
+
+	std_msgs::Int32 pub_cli_fd;
 	ros::init(argc ,argv ,"cli_cmd");
 	ros::NodeHandle n;
-	ros::Subscriber send = n.subscribe("odom",1,send_cli_cb);
-	ros::Rate loop_rate(20);
-#endif
+	ros::Publisher send_pub = n.advertise<std_msgs::Int32>("cli_fd",2);
 
-	while(ros::ok())
+
+	while(1)
 	{
 
 		//连接到服务器start
-		while(tcp_cli(ip,port,&cli_fd)) ;
+		while(tcp_cli(ip,port,&cli_fd)) ; 									//循环等待连接到服务器
 		printf("connect the server fd is \t%d\n",cli_fd);
+		pub_cli_fd.data = cli_fd;
+		send_pub.publish(pub_cli_fd);    									//将fd pub给send节点
 		//连接到服务器end
-		
 
-		while(ros::ok())
+
+		while(1)
 		{
-			
-			ros::spinOnce();
-			loop_rate.sleep();
+			printf("wait recv data\n");
 			memset(buf_cli,0,sizeof(buf_cli));	
-
-			if( (ret = recv(cli_fd,buf_cli,sizeof(buf_cli),0)) <= 0)     	//==0:对方正常关闭导致连接断开
+			if( (ret = recv(cli_fd,buf_cli,sizeof(buf_cli),0)) == 0)     	//==0:对方正常关闭导致连接断开
 			{
 				perror("recv error"); 										//<0:copy数据错误
 				close(cli_fd);
 				break;
-
-			}
-			else
+			}else
 			{
 				printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 				buf_deal(buf_cli,ret);
 			}
-			
+
 		}
 	}
 
@@ -112,132 +138,159 @@ int main(int argc, char **argv)
 
 void buf_deal(char *data ,int len)
 {
-
+	printf("recv data length is %d\n",len);
+	if(EXPLENTH != len && TELLENTH != len)
+	{
+		printf("recv length error\n");
+		return ; 
+	}
 	pid_t pid;
 
 	char *pd = data;
 	char head = *pd;
-	float_char px,py;
-	union{
-	float x;
-	float y;
-	uint8_t ch[8];
-	}pxy;
+	int mode = 0;
+	printf("recv buf is %s\n",pd);
+	printf("head is %c\n",head);
+	printf("head is 0x%x\n",head);
 
-
-
-	char ccr = 0;
-	char buf[128];
-
-	for (int i = PXPOSESTR; i <= PYPOSEEND; i++)
+	if(head != SCEXPHEAD && head != SCTELHEAD)
 	{
-		pxy.ch[i - 2] = pd[i];
-		printf("pd[%d] is %d\n",i,pd[i]);
-	}
-	printf("pxy.x is %f\n",pxy.x);
-	printf("pxy.x is %f\n",pxy.y);
-	sprintf(buf,TOPICARGUS,pxy.x,pxy.y);
-	printf("%s\n",buf);
-
-	switch(head)
-	{
-	case SCEXPHEAD:
-		printf("head is SCEXPHEAD %c\n",head);
-		break;
-	case SCTELHEAD:
-		printf("head is SCTELHEAD %c\n",head);
-		break;
-	default:
+		printf("recv data head error!\n");
 		return ;
 	}
 
 
-#if 0
+	char sta = pd[1];
+	printf("status is %c\n",pd[1]);
+	if((sta != START) && (sta != END))
+	{
+		printf("recv status error\n");
+		return ;
+	}
+
+	mode = head & 0xf0 | (sta & 0x0f);
+	printf("mode is %x\n",mode);
+	printf("mode is %d\n",mode);
+	float_char px,py;
+	union{
+		float x;
+		float y;
+		uint8_t ch[8];
+	}pxy;
+
+	char ccr = 0;
+	char buf[128];
+
+	if(SCTELHEAD == head)
+	{
+		if(CLIBUFTAIL == pd[2])
+		{
+			recvcmd_deal(mode,buf);
+			return ;
+		}else
+		{
+			printf("recv telnet data tail error\n");
+			return ;
+		}
+	}
+
+
+	if(SCEXPHEAD == head)
+	{
+		if(CLIBUFTAIL == pd[PYPOSEEND + 2])
+		{
+			for (int i = PXPOSESTR; i <= PYPOSEEND; i++)
+			{
+				pxy.ch[i - 2] = pd[i];
+				printf("pd[%d] is %d\n",i,pd[i]);
+			}
+			printf("pxy.x is %f\n",pxy.x);
+			printf("pxy.x is %f\n",pxy.y);
+			sprintf(buf,TOPICARGUS,pxy.x,pxy.y);
+			printf("%s\n",buf);
+
+			//if(ccr != pd[PYPOSEEND + 1])
+			//{
+			//  printf("recv crr error!\n");
+			//	return ;
+			//}else
+			{
+				recvcmd_deal(mode,buf);
+				return ;
+			}
+		}else
+		{
+			printf("recv explor data tail error\n");
+			return ;
+		}
+	}
+
+
+	recvcmd_deal(mode,buf);
+	return ;
+
+}
+
+void recvcmd_deal(int mode,char *cmd)
+{
+
+	switch(mode)
+	{
+	case SCEXPSTR:
+		printf("探索模式启动\n");
+		break;
+	case SCEXPEND:
+		printf("探索模式结束\n");
+		break;
+	case SCTELSTR:
+		printf("手动模式启动\n");
+		break;
+	case SCTELEND:
+		printf("手动模式结束\n");
+	default:
+		return ;
+	}
+#if 0 
 	int status;
-	int killpid;
 	pid = fork();
 	if(pid  > 0)
 	{
 
-		printf("!!!!!!!\n");
-		sleep(3);
+		int killpid;
+		printf("This pid is %d\n",getpid());
+		printf("This child pid is %d\n",pid);
+		sleep(10);
 
-		kill(pid,SIGKILL);
-
+		kill(pid,SIGUSR1);
 		killpid = waitpid(pid,&status,0);
 		if(killpid == pid)
 		{
-			printf("pid is%dkillpid is%d\n",pid,killpid);
-
+			printf("pid is \t%d\t killpid is\t%d\n",pid,killpid);
 		}
+		return ;
 	}
 
 	if(0 == pid)
 	{
+		cpid = fork();
+		if(cpid > 0)
+		{
+			execl(ROSLAUNCHPATH,LAUNCH,LAUNCHPKG,LAUNCHMODE1,NULL);
+			printf("ppcpid is %d\n",cpid);
+			signal(SIGUSR1,sighand_fun);
+		}
+		if(0 == cpid )
+		{
 
-		printf("chil  pid is %d\n",getpid());
-
-		//execl(expath ,rostopic ,pub ,topic ,type ,argus );
-		execl(ROSTOPICPATH,TOPIC,TOPICMDP,TOPICTOP,TOPICTYPE,buf,(char *) 0);
-		//	execl("/opt/ros/indigo/bin/rostopic","rostopic",\
-		"pub", "/move_base_simple/goal", "geometry_msgs/PoseStamped",\
-			"{ header: { frame_id: \"map\" }, pose: { position: { x: 0, y: 0, z: 0 }, orientation: { x: 0, y: 0, z: 0, w: 1 } } }",\
-			(char *) 0);
-
-		printf("hello \n");
+			printf("ccpcpid is %d\n",getpid());
+			//execl(expath ,rostopic ,pub ,topic ,type ,argus );
+			execl(ROSTOPICPATH,TOPIC,TOPICMDP,TOPICTOP,TOPICTYPE,buf,NULL);
+			//	execl("/opt/ros/indigo/bin/rostopic","rostopic",\
+			"pub", "/move_base_simple/goal", "geometry_msgs/PoseStamped",\
+				"{ header: { frame_id: \"map\" }, pose: { position: { x: 0, y: 0, z: 0 }, orientation: { x: 0, y: 0, z: 0, w: 1 } } }",\
+				(char *) 0);
+		}
 	}
-#endif
-
-}
-/***************************************
- *发送回调函数**************************
- *将/odom topic 的消息发送给服务器******
- *
- * *************************************/
-void send_cli_cb(const nav_msgs::Odometry::ConstPtr& msg)
-{
-	float_char posev[4]; 
-	char ccr = 0;
-	printf("*****************************************************\n");
-	posev[0].fvalue = msg->twist.twist.linear.x;
-	posev[1].fvalue = msg->twist.twist.angular.z;
-	posev[2].fvalue = msg->pose.pose.position.x;
-	posev[3].fvalue = msg->pose.pose.position.y;
-
-	printf("vx is \t%f\n",posev[0].fvalue);
-	printf("vy is \t%f\n",posev[1].fvalue);
-	printf("px is \t%f\n",posev[2].fvalue);
-	printf("py is \t%f\n",posev[3].fvalue);
-	printf("*****************************************************\n");
-
-	sendbuf[0] = 0xbb;
-	for (int i = DATAPOSESTR ; i < DATAPOSEEND; i++)
-	{
-		sendbuf[i] = posev[(i - 2)/4].cvalue[i%4];
-		printf("sendbuf[%d] is %d\t%d\n",i,sendbuf[i],(i - 2)/4);
-		ccr ^= posev[(i - 2)/4].cvalue[i];
-	}
-
-	sendbuf[DATAPOSEEND] = ccr;
-
-	send(cli_fd,sendbuf,SENDBUFSIZE,0);
-
-
-#if 0
-	float_char px,py,pz,vx,vy,vz;
-
-	px.fvalue = msg->pose.pose.position.x;
-	py.fvalue = msg->pose.pose.position.y;
-	pz.fvalue = msg->pose.pose.position.z;
-
-	vx.fvalue = msg->twist.twist.linear.x;
-	vy.fvalue = msg->twist.twist.linear.y;
-	vz.fvalue = msg->twist.twist.angular.z;
-
-	buf[0] = px.cvalue[0];
-	buf[1] = px.cvalue[1];
-	buf[0] = px.cvalue[2];
-	buf[3] = px.cvalue[3];
 #endif
 
 }

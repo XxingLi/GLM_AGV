@@ -71,4 +71,6 @@ cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /opt/ros/indigo/include/ros/
 cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /opt/ros/indigo/include/ros/wall_timer_options.h
 cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /opt/ros/indigo/include/rosconsole/macros_generated.h
 cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /opt/ros/indigo/include/std_msgs/Header.h
+cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /opt/ros/indigo/include/std_msgs/Int16.h
+cli_cmd/CMakeFiles/cli_cmd_node.dir/src/main.cpp.o: /opt/ros/indigo/include/std_msgs/Int32.h
 

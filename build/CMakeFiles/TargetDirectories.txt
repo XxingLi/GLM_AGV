@@ -44,7 +44,6 @@
 /home/glm/catkin_ws/build/CMakeFiles/clean_test_results.dir
 /home/glm/catkin_ws/build/velodyne/velodyne_driver/CMakeFiles/clean_test_results_velodyne_driver.dir
 /home/glm/catkin_ws/build/velodyne/velodyne_pointcloud/tests/CMakeFiles/clean_test_results_velodyne_pointcloud.dir
-/home/glm/catkin_ws/build/cli_cmd/CMakeFiles/cli_cmd_node.dir
 /home/glm/catkin_ws/build/TCP/client_VLP/CMakeFiles/client_VLP_node.dir
 /home/glm/catkin_ws/build/but_velodyne/but_velodyne_proc/CMakeFiles/cloud_assembler.dir
 /home/glm/catkin_ws/build/velodyne/velodyne_pointcloud/src/conversions/CMakeFiles/cloud_node.dir
@@ -85,6 +84,7 @@
 /home/glm/catkin_ws/build/velodyne/velodyne_pointcloud/CMakeFiles/pcl_msgs_generate_messages_lisp.dir
 /home/glm/catkin_ws/build/velodyne/velodyne_pointcloud/CMakeFiles/pcl_msgs_generate_messages_py.dir
 /home/glm/catkin_ws/build/velodyne/velodyne_pointcloud/CMakeFiles/pcl_ros_gencfg.dir
+/home/glm/catkin_ws/build/cli_cmd/CMakeFiles/recv_cli.dir
 /home/glm/catkin_ws/build/velodyne/velodyne_pointcloud/src/conversions/CMakeFiles/ringcolors_node.dir
 /home/glm/catkin_ws/build/velodyne/velodyne_pointcloud/src/conversions/CMakeFiles/ringcolors_nodelet.dir
 /home/glm/catkin_ws/build/cli_cmd/CMakeFiles/roscpp_generate_messages_cpp.dir
@@ -122,6 +122,7 @@
 /home/glm/catkin_ws/build/velodyne/velodyne_pointcloud/tests/CMakeFiles/run_tests_velodyne_pointcloud_rostest_tests_cloud_nodelet_vlp16_hz.test.dir
 /home/glm/catkin_ws/build/velodyne/velodyne_pointcloud/tests/CMakeFiles/run_tests_velodyne_pointcloud_rostest_tests_transform_node_hz.test.dir
 /home/glm/catkin_ws/build/velodyne/velodyne_pointcloud/tests/CMakeFiles/run_tests_velodyne_pointcloud_rostest_tests_transform_nodelet_hz.test.dir
+/home/glm/catkin_ws/build/cli_cmd/CMakeFiles/send_cli.dir
 /home/glm/catkin_ws/build/odom_publisher/CMakeFiles/sensor_msgs_generate_messages_cpp.dir
 /home/glm/catkin_ws/build/odom_publisher/CMakeFiles/sensor_msgs_generate_messages_lisp.dir
 /home/glm/catkin_ws/build/odom_publisher/CMakeFiles/sensor_msgs_generate_messages_py.dir
