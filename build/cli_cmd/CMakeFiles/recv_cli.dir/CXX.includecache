@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+/home/glm/catkin_ws/src/cli_cmd/src/cli_tcp.cpp
+tcp_socket.h
+/home/glm/catkin_ws/src/cli_cmd/src/tcp_socket.h
+
 /home/glm/catkin_ws/src/cli_cmd/src/main.cpp
 tcp_socket.h
 /home/glm/catkin_ws/src/cli_cmd/src/tcp_socket.h
@@ -32,6 +36,8 @@ sys/types.h
 sys/wait.h
 -
 sys/socket.h
+-
+sys/prctl.h
 -
 unistd.h
 -

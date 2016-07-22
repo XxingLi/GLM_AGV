@@ -25,7 +25,8 @@ SET(CMAKE_TARGET_LINKED_INFO_FILES
 
 # The include file search paths:
 SET(CMAKE_C_TARGET_INCLUDE_PATH
-  "/usr/include/opencv"
+  "/usr/include/opencv-3.1.0-dev/opencv"
+  "/usr/include/opencv-3.1.0-dev"
   "/home/glm/catkin_ws/src/but_velodyne/but_velodyne_proc/include"
   "/home/glm/catkin_ws/devel/include"
   "/home/glm/catkin_ws/src/velodyne/velodyne_pointcloud/include"

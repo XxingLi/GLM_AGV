@@ -31,6 +31,8 @@ sys/wait.h
 -
 sys/socket.h
 -
+sys/prctl.h
+-
 unistd.h
 -
 string.h
